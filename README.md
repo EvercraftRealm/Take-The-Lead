@@ -1,4 +1,3 @@
-Attempting to perform the InitializeDefaultDrives operation on the 'FileSystem' provider failed.
 # Take The Lead
 
 Version 1.2.1 is compatible with BedrockUnplugged: unreadable simulated-player
