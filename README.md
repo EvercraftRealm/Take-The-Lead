@@ -36,28 +36,22 @@ Make a backup before adding any behavior pack to an important world.
 4. If more than one eligible pet is leashed to you, choose one.
 5. Confirm **Transfer** in the dialog.
 
-The pet's tame owner changes to the recipient, and the pet's leash is attached
+The tamed pet's owner changes to the recipient, and the pet's leash is attached
 to them. Both players receive a chat notification. The transfer is canceled if
-either player moves more than 8 blocks apart, the pet moves too far away, its
+either player moves too far apart, the pet moves too far, its
 leash is removed, or its ownership changes while the dialog is open.
 
-Only a pet's current owner can transfer it. Untamed entities and pets belonging
-to someone else are ignored. Interacting with another player when no eligible
-pet is leashed does nothing and produces no message.
 
 ## Supported entities
 
-Take The Lead supports wolves, cats, parrots, and these controllable mounts:
+Take The Lead supports wolves, cats, parrots, and these mounts:
 
-- horses, skeleton horses, and zombie horses;
-- donkeys and mules;
-- camels and camel husks;
-- nautiluses and zombie nautiluses;
-- Happy Ghasts; and
-- striders.
-
-Llamas are not managed as drivable mounts because a player can sit on one but
-cannot steer it. Pigs are intentionally not managed.
+- Horses, skeleton horses, and zombie horses
+- Donkeys and mules
+- Camels and camel husks
+- Nautiluses and zombie nautiluses
+- Happy Ghasts
+- Striders
 
 All supported mounts transfer in place. Take The Lead changes only its saved
 owner, leaving the same entity and preserving its name, health, attributes,
@@ -66,7 +60,6 @@ Only the recorded owner may occupy the controlling seat. On a multi-seat mount,
 including a Happy Ghast or camel, anyone may use a passenger seat once the
 owner is seated as the driver.
 
-Vanilla does not expose a usable historical owner for every controllable mount.
 When a supported mount has no recorded owner, its next driver receives a
 confirmation dialog before ownership is assigned. Declining or closing the
 dialog ejects that driver, and the next driving attempt prompts again. This
@@ -74,11 +67,8 @@ also migrates legacy mounts that existed before Take The Lead.
 
 Anyone may leash or lead a supported mount, but only its recorded owner can
 transfer it. Unauthorized drivers are immediately rejected and shown the
-owner's name. Horse-family mounts also play the vanilla angry sound. Feedback
-has a two-second per-mount cooldown to prevent spam.
+owner's name. 
 
-Other leashable tamed pets remain supported through Bedrock's
-`minecraft:tameable` and `minecraft:tamemount` ownership components.
 
 ## Pet death reports
 
