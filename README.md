@@ -1,9 +1,5 @@
 # Take The Lead
 
-Version 1.2.1 is compatible with BedrockUnplugged: unreadable simulated-player
-entries are skipped, and players tagged `unplugged.bot` cannot trigger pet
-transfers, mount ownership, driving enforcement, or player-attributed deaths.
-
 A Minecraft Bedrock behavior pack that lets a pet owner hand a tamed pet to
 another player without commands, cheats, or experimental toggles.
 
@@ -22,7 +18,7 @@ setting.
 1. Activate or reload the `TakeTheLead` development behavior pack.
 2. Edit the desired world.
 3. Activate **Take The Lead** under Behavior Packs.
-4. Leave every experimental toggle off.
+4. No experimental toggles needed.
 
 Make a backup before adding any behavior pack to an important world.
 
@@ -30,8 +26,7 @@ Make a backup before adding any behavior pack to an important world.
 
 1. Tame a leashable pet or mount.
 2. Attach a lead to the pet.
-3. Use/interact with the player who should receive the pet. It does not matter
-   what item you are holding; the attached animal leash starts the transfer.
+3. Use/interact with the player who should receive the pet. 
 4. If more than one eligible pet is leashed to you, choose one.
 5. Confirm **Transfer** in the dialog.
 
@@ -52,16 +47,11 @@ Take The Lead supports wolves, cats, parrots, and these mounts:
 - Happy Ghasts
 - Striders
 
-All supported mounts transfer in place. Take The Lead changes only its saved
-owner, leaving the same entity and preserving its name, health, attributes,
-variant, saddle, armor or harness, inventory, tags, and dynamic properties.
-Only the recorded owner may occupy the controlling seat. On a multi-seat mount,
+With mounts, only the recorded owner may occupy the controlling seat. On a multi-seat mount,
 including a Happy Ghast or camel, anyone may use a passenger seat once the
 owner is seated as the driver.
 
-When a supported mount has no recorded owner, its next driver receives a
-confirmation dialog before ownership is assigned. Declining or closing the
-dialog ejects that driver, and the next driving attempt prompts again. This
+When a supported mount has no recorded owner, its next rider receives the option to claim it. Declining or closing the dialog ejects that driver, and the next driving attempt prompts again. This
 also migrates legacy mounts that existed before Take The Lead.
 
 Anyone may leash or lead a supported mount, but only its recorded owner can
