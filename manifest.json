@@ -1,0 +1,38 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Take The Lead",
+    "description": "Transfer pets and controllable mounts by leash, with owner-only driving and open passenger seats. Supports horses, camels, nautiluses, Happy Ghasts, striders, wolves, cats, parrots, and more. Includes death reports, BedrockRelay, and BedLog support.",
+    "uuid": "15c488a4-ad25-4657-b5ad-b5367d308293",
+    "version": [1, 2, 1],
+    "min_engine_version": [1, 26, 60]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "a95a1022-1f99-4e64-a58c-cdb550acbcdf",
+      "version": [1, 2, 1]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "uuid": "bb08b637-25a6-4a2a-abb1-7b00edb598da",
+      "version": [1, 2, 1],
+      "entry": "scripts/main.js"
+    }
+  ],
+  "dependencies": [
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.11.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.2.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["Ethernym"],
+    "product_type": "addon"
+  }
+}

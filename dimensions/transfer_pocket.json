@@ -1,0 +1,20 @@
+{
+  "format_version": "1.26.50",
+  "minecraft:dimension": {
+    "description": {
+      "identifier": "betterpets:transfer_pocket"
+    },
+    "components": {
+      "minecraft:dimension_height": {
+        "min_y": 0,
+        "height_range": 16
+      },
+      "minecraft:default_biome": {
+        "biome": "minecraft:plains"
+      },
+      "minecraft:generation": {
+        "generator_type": "void"
+      }
+    }
+  }
+}
