@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+
+      - name: Validate and package behavior pack
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $manifest = Get-Content -Raw -LiteralPath './manifest.json' | ConvertFrom-Json
+          $version = $manifest.header.version -join '.'
+          if ($env:GITHUB_REF_NAME -ne "v$version") {
+            throw "Tag $env:GITHUB_REF_NAME does not match manifest version $version"
+          }
+
+          $excluded = @('.github', 'README.md', 'LICENSE', 'CHANGELOG.md', 'ADDON_COMPATIBILITY.md')
+          $runtime = Get-ChildItem -LiteralPath '.' |
+            Where-Object { $_.Name -notin $excluded -and -not $_.Name.StartsWith('.') }
+          New-Item -ItemType Directory -Force -Path './dist' | Out-Null
+
+          $artifactName = "Take-The-Lead-$version.mcpack"
+          $archivePath = "./dist/Take-The-Lead-$version.zip"
+          $artifactPath = "./dist/$artifactName"
+          Compress-Archive -LiteralPath $runtime.FullName -DestinationPath $archivePath -CompressionLevel Optimal
+          Move-Item -LiteralPath $archivePath -Destination $artifactPath
+
+          $hash = (Get-FileHash -Algorithm SHA256 -LiteralPath $artifactPath).Hash.ToLowerInvariant()
+          "$hash  $artifactName" | Set-Content -NoNewline -Encoding ascii -LiteralPath "$artifactPath.sha256"
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $artifact = Get-ChildItem -LiteralPath './dist' -Filter '*.mcpack' | Select-Object -First 1
+          gh release create $env:GITHUB_REF_NAME $artifact.FullName "$($artifact.FullName).sha256" --generate-notes --title "Take The Lead $env:GITHUB_REF_NAME"
