@@ -1,0 +1,43 @@
+name: Publish v1.2.1
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/release-v1.2.1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@v4
+
+      - name: Build Minecraft pack
+        shell: bash
+        run: |
+          zip -r Take-The-Lead-1.2.1.mcpack \
+            LICENSE \
+            manifest.json \
+            pack_icon.png \
+            README.md \
+            dimensions \
+            scripts
+          sha256sum Take-The-Lead-1.2.1.mcpack > Take-The-Lead-1.2.1.mcpack.sha256
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create v1.2.1 \
+            Take-The-Lead-1.2.1.mcpack \
+            Take-The-Lead-1.2.1.mcpack.sha256 \
+            --repo "${{ github.repository }}" \
+            --target "${{ github.sha }}" \
+            --title "Take The Lead 1.2.1" \
+            --notes "Achievement-compatible Minecraft Bedrock behavior pack for transferring pet and mount ownership. Download the .mcpack asset and open it with Minecraft Bedrock Edition."
